@@ -1,75 +1,50 @@
-<?php
-include 'connect.php';
-if(isset($_POST['submit']))
-{
-     $name = $_POST['name'];
-     $username = $_POST['username'];
-     $email = $_POST['email'];
-     $gender = $_POST['gender'];
-     $password = $_POST['password'];
-     $mobile = $_POST['mobile'];
-
-    $sql = " insert into `data` (username,name,email,gender,password,mobile) values('$username','$name','$email','$gender','$password','$mobile')";
-    $result = mysqli_query($con,$sql);
-    if($result)
-    {
-        // echo "Data inserted Successfully";
-        header('location:display.php');
-    }
-    else
-    {
-        die(mysqli_error($con));
-    }
-}
-?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Hello, world!</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+    .one{
+        text-align:center;
+        margin-top: 17%;
+    }
+    .one:hover { 
+      color: yellow;
+    }
+    body{
+      background-image: url('plain.avif');
+ background-size: cover;
+ height: 100vh;
+ width: 100%;
+    }
+    </style>
 </head>
 <body>
-    <h3 class="text-center">CRUD OPERATION</h3>
-    <div class="container">
-    <form method = 'post'>
-    <div class="form-group">
-    <label>Name</label>
-    <input type="text" name="name" class="form-control">
-  </div>
-  <div class="form-group">
-    <label>username</label>
-    <input type="text" name="username" class="form-control">
-  </div>
-  <div class="form-group">
-    <label>Email address</label>
-    <input type="email" name="email"class="form-control" aria-describedby="emailHelp">
-  </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">CRUD</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-  <div class="form-group">
-  <label for="gender" class="fw-bold text-primary form-check-label">GENDER</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input type="radio" class="form-check-input" name="gender" value="m" />
-  <span class="text-info">MALE</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input type="radio" class="form-check-input" name="gender" value="f" />
-  <span class="text-info">FEMALE</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input type="radio" class="form-check-input" name="gender" value="o" />
-  <span class="text-info">OTHERS</span>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="admin.php">Admin Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="login.php">User Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="signup.php">User Signup</a>
+      </li>
+    </ul>
   </div>
-  <div class="form-group">
-    <label>Password</label>
-    <input type="text" class="form-control" name="password">
-  </div>
-  <div class="form-group">
-    <label>Mobile</label>
-    <input type="text" name="mobile" class="form-control">
-  </div>
-  <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input">
-    <label class="form-check-label">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-</form>
-</div>
+</nav>
+<h3 class="one">CRUD OPERATIONS</h3>
 </body>
 </html>

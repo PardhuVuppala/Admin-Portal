@@ -1,16 +1,5 @@
 <?php
 include 'connect.php';
-$id = $_GET['updateid'];
-$sql = "select * from `data` where id =$id";
-$result  = mysqli_query($con,$sql);
-$row=mysqli_fetch_assoc($result);
-$name = $row['name'];
-$username = $row['username'];
-$email = $row['email'];
-$gender = $row['gender'];
-$password = $row['password'];
-$mobile = $row['mobile'];
-
 if(isset($_POST['submit']))
 {
      $name = $_POST['name'];
@@ -20,12 +9,11 @@ if(isset($_POST['submit']))
      $password = $_POST['password'];
      $mobile = $_POST['mobile'];
 
-    $sql = " update `data` set id = '$id', name ='$name', username = '$username', email = '$email'
-     , gender = '$gender', password = '$password' , mobile = '$mobile' where id = $id";
+    $sql = " insert into `data` (username,name,email,gender,password,mobile) values('$username','$name','$email','$gender','$password','$mobile')";
     $result = mysqli_query($con,$sql);
     if($result)
-    {    
-        // echo "Data Update Successfully";
+    {
+        // echo "Data inserted Successfully";
         header('location:display.php');
     }
     else
@@ -43,50 +31,44 @@ if(isset($_POST['submit']))
     <title>Hello, world!</title>
 </head>
 <body>
-    <h3 class="text-center">UPDATE OPERATION</h3>
+    <h3 class="text-center">ADD DETAILS</h3>
     <div class="container">
     <form method = 'post'>
     <div class="form-group">
     <label>Name</label>
-    <input type="text" name="name" class="form-control" value="<?php
-    echo $name;
-    ?>">
+    <input type="text" name="name" class="form-control required" required>
   </div>
   <div class="form-group">
     <label>username</label>
-    <input type="text" name="username" class="form-control" value="<?php
-    echo $username; ?>">
+    <input type="text" name="username" class="form-control" required>
   </div>
   <div class="form-group">
     <label>Email address</label>
-    <input type="email" name="email"class="form-control" value="<?php
-    echo $email;?>">
+    <input type="email" name="email"class="form-control" aria-describedby="emailHelp" required>
   </div>
 
   <div class="form-group">
-  <label for="gender" class="fw-bold form-check-label">GENDER</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <label for="gender" class="fw-bold text-primary form-check-label">GENDER</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <input type="radio" class="form-check-input" name="gender" value="m" />
-  <span >MALE</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <span class="text-info">MALE</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <input type="radio" class="form-check-input" name="gender" value="f" />
-  <span>FEMALE</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <span class="text-info">FEMALE</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <input type="radio" class="form-check-input" name="gender" value="o" />
-  <span >OTHERS</span>
+  <span class="text-info">OTHERS</span>
   </div>
   <div class="form-group">
     <label>Password</label>
-    <input type="password" class="form-control" name="password"  value="<?php
-    echo $password;?>">
+    <input type="password" class="form-control" name="password" required>
   </div>
   <div class="form-group">
     <label>Mobile</label>
-    <input type="text" name="mobile" class="form-control" value="<?php
-    echo $mobile;?>">
+    <input type="text" name="mobile" class="form-control" required>
   </div>
   <div class="form-group form-check">
-    <input type="checkbox" class="form-check-input">
+    <input type="checkbox" class="form-check-input" required>
     <label class="form-check-label">Check me out</label>
   </div>
-  <button type="submit" class="btn btn-primary" name="submit">Update</button>
+  <button type="submit" class="btn btn-primary" name="submit">Submit</button>
 </form>
 </div>
 </body>

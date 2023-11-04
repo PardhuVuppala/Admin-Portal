@@ -15,8 +15,14 @@ include 'connect.php';
 
 </head>
 <body>
+  
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <form class="form-inline my-2 my-lg-0">
+      <a href='logout.php' class="nav-link">Logout</a>
+    </form>
+</nav>
     <div class="container">
-        <button class="btn btn-primary my-5"><a href="index.php" class="text-light">Add User</a></button>
+        <button class="btn btn-primary my-5"><a href="add.php" class="text-light">Add User</a></button>
         <table class="table">
   <thead>
     <tr>
@@ -56,9 +62,9 @@ include 'connect.php';
         <td>'.$password.'</td>
         <td>'.$mobile.'</td>
      
-        <td><button class="btn btn-primary" ><a href="update.php?
-        updateid='.$id.'" class="text-light">Update</a></button> </td>
-        <td><button class="btn btn-danger"><a href="delete.php?
+        <td class="d-align"><button class="btn btn-primary btn-sm" ><a href="update.php?
+        updateid='.$id.'" class="text-light">Update</a></button> 
+        <button class="btn btn-danger btn-sm"><a href="delete.php?
         deleteid='.$id.'" class="text-light">Delete</a></button></td>
         
    

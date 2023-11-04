@@ -11,16 +11,7 @@ if($_SERVER['REQUEST_METHOD']=='POST')
     $gender = $_POST['gender'];
     $mobile = $_POST['mobile'];
     $password = $_POST['password'];
-    // $sql = "insert into `data` (username,name,email,gender,password,mobile) values ('$username','$name','$email','$gender','$password','$mobile')"; 
-    // $result  = mysqli_query($con,$sql);
-    // if($result)
-    // {
-    //     echo "Data insert Successfully";
-    // }
-    // else
-    // {
-    //     die(mysqli_error($con));
-    // }
+ 
     $sql = "select * from `data` where username = '$username'";
     $result = mysqli_query($con,$sql);
     if($result)
@@ -62,11 +53,16 @@ if($_SERVER['REQUEST_METHOD']=='POST')
   <meta name="Description" content="User Reg Page">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <title>Registration</title>
+  <style>
 
+    body{
+      background-image:linear-gradient(to right,white,white,blue);
+    }
+    </style>
  </head>
 
  <body>
-<div class="container">
+<div class="container mt-5">
 
 <br/>
 <br/>
@@ -77,7 +73,7 @@ if($_SERVER['REQUEST_METHOD']=='POST')
       <div class="card-body" style="background-color: #eeefff">
                                                     
        <div class="text-center">
-         <h3 style="color: brown;">CREATE ACCOUNT </h3>
+         <h3 style="color: blue">CREATE ACCOUNT </h3>
        </div>
 
        <div class="text-center">
@@ -85,6 +81,7 @@ if($_SERVER['REQUEST_METHOD']=='POST')
          if($success>0)
          {
             echo "Signup Successful";
+            header('location:index.php');
          }
          ?></h3>
        </div>
@@ -135,12 +132,12 @@ if($_SERVER['REQUEST_METHOD']=='POST')
                         
          <div class="mb-2">
             <label for="password" class="fw-bold text-primary">PASSWORD</label>
-            <input type="text" name="password" class="form-control" placeholder="Enter password" required>
+            <input type="password" name="password" class="form-control" placeholder="Enter password" required>
          </div>
 
          
          <div class="d-grid">		 
-           <input type="submit" class="btn btn-success" value="CREATE ACCOUNT"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           <input type="submit" class="btn btn-primary" value="CREATE ACCOUNT"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          </div>
 		</form>
        </div>

@@ -45,7 +45,14 @@ if($_SERVER['REQUEST_METHOD']=='POST')
   <meta name="Description" content="User Reg Page">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <title>Registration</title>
-
+  <style>
+    .container{
+      margin-top: 130px;
+      }
+      body{
+        background-image:linear-gradient(to right,white,white,green);
+      }
+    </style>
  </head>
 
  <body>
@@ -55,12 +62,12 @@ if($_SERVER['REQUEST_METHOD']=='POST')
 <br/>
 <form action="login.php" method="post">
  <div class="row">
-  <div class="col-md-6 col-sm-8 mx-auto">
+  <div class="col-md-4 col-sm-8 mx-auto">
     <div class="card">
       <div class="card-body" style="background-color: #eeefff">
                                                     
        <div class="text-center">
-         <h3 style="color: blue;">Login Area</h3>
+         <h3 style="color: blue;">Login</h3>
        </div>
        <div class="text-center">
          <h3 style="color: brown;"><?php
@@ -82,7 +89,7 @@ if($_SERVER['REQUEST_METHOD']=='POST')
 
 
               
-       <div class="text-left">
+       <div class="text-left" >
                  
     
        
@@ -96,7 +103,7 @@ if($_SERVER['REQUEST_METHOD']=='POST')
                         
          <div class="mb-2">
             <label for="password" class="fw-bold text-primary">PASSWORD</label>
-            <input type="text" name="password" class="form-control" placeholder="Enter password" required>
+            <input type="password" name="password" class="form-control" placeholder="Enter password" required>
          </div>
 
          
