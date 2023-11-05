@@ -7,6 +7,7 @@ if(!isset($_SESSION['username']))
 ?>
 <?php
 
+
 include 'connect.php';
 $username = $_SESSION['username'];
 $sql = "Select * from `data` where username='$username'";
@@ -25,8 +26,23 @@ if($result)
       $mobile = $row['mobile'];
   }
 }
+if(isset($_POST['submit']))
+{
+      $password = $_POST['password'];
 
-
+    $sql = " update `data` set id = '$id', name ='$name', username = '$username', email = '$email'
+     , gender = '$gender', password = '$password' , mobile = '$mobile' where id = $id";
+    $result = mysqli_query($con,$sql);
+    if($result)
+    {    
+        // echo "Data Update Successfully";
+        header('location:home.php');
+    }
+    else
+    {
+        die(mysqli_error($con));
+    }
+}
 ?>
 
 <!doctype html>
@@ -128,49 +144,22 @@ ul {
     </form>
 </nav>
 <div class="sidebar">
-  <a class="active" href="">DashBoard</a>
-  <a href="updateHome.php?
-        updateid='.$id.'">Profile</a>
+  <a href="home.php">DashBoard</a>
+  <a href="updateHome.php">Profile</a>
   <a href="password.php">Password</a>
   <a href="logout.php">Logout</a>
 </div>
-<div class="content">
-  <div class="container" id="one">
-<ul>
-  <div class="two">
-  <li>
-  <b>  UserName: </b>
-    <?php
-      echo $username;
-    ?>
-  </li>
-  <li>
-<b>  Name:  </b>
-    <?php
-      echo $name;
-    ?>
-  </li>
-  <li>
-   <b> Email: </b>
-    <?php
-      echo $email;
-    ?>
-  </li>
-  <li>
-   <b> Password: </b>
-    <?php
-      echo $password;
-    ?>
-  </li>
-  <li>
-   <b> Mobile: </b>
-    <?php
-      echo $mobile;
-    ?>
-  </li>
-  <li> <?php echo '<button class="btn btn-primary btn-sm" ><a href="updateHome.php" class="text-light">Update</a></button>';
-        ?> </li>
+ <div class="content">
+ <div class="container">
+    <form method = 'post'>
+    <div class="form-group">
+    <label>Password</label>
+    <input type="password" class="form-control" name="password"  value="<?php
+    echo $password;?>">
+  </div>
+  <button type="submit" class="btn btn-primary" name="submit">Update</button>
+</form>
 </div>
-</ul>
+</div>
   </body>
 </html>

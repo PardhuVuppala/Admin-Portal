@@ -7,6 +7,7 @@ if(!isset($_SESSION['username']))
 ?>
 <?php
 
+
 include 'connect.php';
 $username = $_SESSION['username'];
 $sql = "Select * from `data` where username='$username'";
@@ -25,8 +26,26 @@ if($result)
       $mobile = $row['mobile'];
   }
 }
+if(isset($_POST['submit']))
+{
+     $name = $_POST['name'];
+     $username = $_POST['username'];
+     $email = $_POST['email'];
+         $mobile = $_POST['mobile'];
 
-
+    $sql = " update `data` set id = '$id', name ='$name', username = '$username', email = '$email'
+     , gender = '$gender', password = '$password' , mobile = '$mobile' where id = $id";
+    $result = mysqli_query($con,$sql);
+    if($result)
+    {    
+        // echo "Data Update Successfully";
+        header('location:updateHome.php');
+    }
+    else
+    {
+        die(mysqli_error($con));
+    }
+}
 ?>
 
 <!doctype html>
@@ -86,6 +105,7 @@ div.content {
   height: 90vh;
 }
 
+
 @media screen and (max-width: 700px) {
   .sidebar {
     width: 100%;
@@ -128,49 +148,42 @@ ul {
     </form>
 </nav>
 <div class="sidebar">
-  <a class="active" href="">DashBoard</a>
-  <a href="updateHome.php?
-        updateid='.$id.'">Profile</a>
+  <a href="home.php">DashBoard</a>
+  <a href="updateHome.php">Profile</a>
   <a href="password.php">Password</a>
   <a href="logout.php">Logout</a>
 </div>
-<div class="content">
-  <div class="container" id="one">
-<ul>
-  <div class="two">
-  <li>
-  <b>  UserName: </b>
-    <?php
-      echo $username;
-    ?>
-  </li>
-  <li>
-<b>  Name:  </b>
-    <?php
-      echo $name;
-    ?>
-  </li>
-  <li>
-   <b> Email: </b>
-    <?php
-      echo $email;
-    ?>
-  </li>
-  <li>
-   <b> Password: </b>
-    <?php
-      echo $password;
-    ?>
-  </li>
-  <li>
-   <b> Mobile: </b>
-    <?php
-      echo $mobile;
-    ?>
-  </li>
-  <li> <?php echo '<button class="btn btn-primary btn-sm" ><a href="updateHome.php" class="text-light">Update</a></button>';
-        ?> </li>
+ <div class="content">
+ <div class="container" id= "Hello">
+    <form method = 'post'>
+    <div class="form-group">
+    <label>Name</label>
+    <input type="text" name="name" class="form-control" value="<?php
+    echo $name;
+    ?>">
+  </div>
+  <div class="form-group">
+    <label>username</label>
+    <input type="text" name="username" class="form-control" value="<?php
+    echo $username; ?>">
+  </div>
+  <div class="form-group">
+    <label>Email address</label>
+    <input type="email" name="email"class="form-control" value="<?php
+    echo $email;?>">
+  </div>
+  <div class="form-group">
+    <label>Mobile</label>
+    <input type="text" name="mobile" class="form-control" value="<?php
+    echo $mobile;?>">
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input">
+    <label class="form-check-label">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary" name="submit">Update</button>
+</form>
 </div>
-</ul>
+</div>
   </body>
 </html>

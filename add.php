@@ -1,5 +1,7 @@
 <?php
 include 'connect.php';
+$user= 0;
+$success = 0;
 if(isset($_POST['submit']))
 {
      $name = $_POST['name'];
@@ -9,17 +11,35 @@ if(isset($_POST['submit']))
      $password = $_POST['password'];
      $mobile = $_POST['mobile'];
 
-    $sql = " insert into `data` (username,name,email,gender,password,mobile) values('$username','$name','$email','$gender','$password','$mobile')";
-    $result = mysqli_query($con,$sql);
-    if($result)
-    {
-        // echo "Data inserted Successfully";
-        header('location:display.php');
-    }
-    else
-    {
-        die(mysqli_error($con));
-    }
+     $sql = "select * from `data` where username = '$username'";
+     $result = mysqli_query($con,$sql);
+     if($result)
+     {
+         $num = mysqli_num_rows($result);
+         if($num>0)
+         {
+             // echo "user already exists";
+             $user = 1;
+         }
+         else
+         {
+              $sql = "insert into `data` (username,name,email,gender,password,mobile) values ('$username','$name','$email','$gender','$password','$mobile')"; 
+              $result  = mysqli_query($con,$sql);
+              if($result)
+              {
+                 //  echo "Singup Successful";
+                 $success = 1;
+                 $user = 0;
+                 
+              }
+              else
+              {
+                  die(mysqli_error($con));
+              }
+         }
+     }
+ 
+ 
 }
 ?>
 <!doctype html>
@@ -32,6 +52,19 @@ if(isset($_POST['submit']))
 </head>
 <body>
     <h3 class="text-center">ADD DETAILS</h3>
+    <h3 class="text-center"><?php
+    if($user>0)
+    {
+      echo "Username already exist";
+      
+    }
+    else if($success>0)
+    {
+      echo "User Created";
+      header('location:display.php');
+    }
+
+    ?></h3>
     <div class="container">
     <form method = 'post'>
     <div class="form-group">

@@ -16,7 +16,6 @@ if(isset($_POST['submit']))
      $name = $_POST['name'];
      $username = $_POST['username'];
      $email = $_POST['email'];
-     $gender = $_POST['gender'];
      $password = $_POST['password'];
      $mobile = $_POST['mobile'];
 
@@ -63,15 +62,7 @@ if(isset($_POST['submit']))
     echo $email;?>">
   </div>
 
-  <div class="form-group">
-  <label for="gender" class="fw-bold form-check-label">GENDER</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input type="radio" class="form-check-input" name="gender" value="m" />
-  <span >MALE</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input type="radio" class="form-check-input" name="gender" value="f" />
-  <span>FEMALE</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input type="radio" class="form-check-input" name="gender" value="o" />
-  <span >OTHERS</span>
-  </div>
+  
   <div class="form-group">
     <label>Password</label>
     <input type="password" class="form-control" name="password"  value="<?php
